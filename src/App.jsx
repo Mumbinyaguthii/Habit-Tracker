@@ -35,6 +35,13 @@ const App = () => {
     setHabits(habits.filter((habit) => habit.id !== id));
   };
 
+  const completedHabits = habits.filter((habit) => habit.completed);
+
+  const completedPercentage =
+    habits.length === 0
+      ? 0
+      : Math.round((completedHabits.length / habits.length) * 100);
+
   return (
     <div>
       <h1>Habit Tracker</h1>
@@ -46,6 +53,19 @@ const App = () => {
       />
 
       <button onClick={addHabit}>Add Habit</button>
+
+      <p>
+        {completedHabits.length} of {habits.length} habits completed.
+        {""}
+        {completedPercentage} % completed.
+      </p>
+
+      <div className="progress-bar">
+        <div
+          className="progress"
+          style={{ width: `${completedPercentage}%` }}
+        ></div>
+      </div>
 
       {habits.map((habit) => (
         <div key={habit.id}>
