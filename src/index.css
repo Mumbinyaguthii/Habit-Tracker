@@ -124,3 +124,19 @@ code {
   border-radius: 10px;
   transition: width 0.3s ease;
 }
+
+.habit-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.add {
+  background: green;
+  gap: 10px;
+}
+
+.del {
+  background: red;
+}

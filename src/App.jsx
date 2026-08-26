@@ -2,21 +2,58 @@ import { useState } from "react";
 
 const App = () => {
   const [habits, setHabits] = useState([
-    { id: 1, name: "Drinking Water", completed: false },
-    { id: 2, name: "Walking", completed: false },
-    { id: 3, name: "Reading", completed: false },
-    { id: 4, name: "Exercise", completed: false },
+    {
+      id: 1,
+      name: "Drinking Water",
+      completed: false,
+      completedDates: [],
+      category: "Health",
+    },
+    {
+      id: 2,
+      name: "Walking",
+      completed: false,
+      completedDates: [],
+      category: "Fitness",
+    },
+    {
+      id: 3,
+      name: "Reading",
+      completed: false,
+      completedDates: [],
+      category: "Learning",
+    },
+    {
+      id: 4,
+      name: "Exercise",
+      completed: false,
+      completedDates: [],
+      category: "Fitness",
+    },
   ]);
+
+  const today = new Date().toISOString().split("T")[0];
 
   const toggleHabit = (id) => {
     setHabits(
       habits.map((habit) =>
-        habit.id === id ? { ...habit, completed: !habit.completed } : habit,
+        habit.id === id
+          ? {
+              ...habit,
+              completed: !habit.completed,
+
+              completedDates: habit.completed
+                ? habit.completedDates.filter((date) => date !== today)
+                : [...habit.completedDates, today],
+            }
+          : habit,
       ),
     );
   };
 
   const [newHabit, setNewHabit] = useState("");
+  const [category, setCategory] = useState("Health");
+  const [filterCategory, setFilterCategory] = useState("All");
 
   const addHabit = () => {
     if (newHabit.trim() === "") return;
@@ -25,10 +62,13 @@ const App = () => {
       id: Date.now(),
       name: newHabit,
       completed: false,
+      completedDates: [],
+      category: category,
     };
 
     setHabits([...habits, habit]);
     setNewHabit("");
+    setCategory("Health");
   };
 
   const deleteHabit = (id) => {
@@ -51,8 +91,16 @@ const App = () => {
         value={newHabit}
         onChange={(e) => setNewHabit(e.target.value)}
       />
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="Health">Health</option>
+        <option value="Fitness">Fitness</option>
+        <option value="Personal">Personal</option>
+        <option value="Learning">Learning</option>
+      </select>
 
-      <button onClick={addHabit}>Add Habit</button>
+      <button className="add" onClick={addHabit}>
+        Add Habit
+      </button>
 
       <p>
         {completedHabits.length} of {habits.length} habits completed.
@@ -67,16 +115,30 @@ const App = () => {
         ></div>
       </div>
 
+      <select
+        value={filterCategory}
+        onChange={(e) => setFilterCategory(e.target.value)}
+      >
+        <option value="All">All</option>
+        <option value="Health">Health</option>
+        <option value="Fitness">Fitness</option>
+        <option value="Personal">Personal</option>
+        <option value="Learning">Learning</option>
+      </select>
+
       {habits.map((habit) => (
-        <div key={habit.id}>
+        <div className="habit-item" key={habit.id}>
           <input
             type="checkbox"
             checked={habit.completed}
             onChange={() => toggleHabit(habit.id)}
           />
           <span>{habit.name}</span>
+          <span>{habit.category}</span>
 
-          <button onClick={() => deleteHabit(habit.id)}>Delete</button>
+          <button className="del" onClick={() => deleteHabit(habit.id)}>
+            Delete
+          </button>
         </div>
       ))}
     </div>
