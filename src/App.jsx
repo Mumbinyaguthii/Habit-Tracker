@@ -1,36 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import HabitForm from "./components/HabitForm";
+import ProgressBar from "./components/ProgressBar";
 
 const App = () => {
-  const [habits, setHabits] = useState([
-    {
-      id: 1,
-      name: "Drinking Water",
-      completed: false,
-      completedDates: [],
-      category: "Health",
-    },
-    {
-      id: 2,
-      name: "Walking",
-      completed: false,
-      completedDates: [],
-      category: "Fitness",
-    },
-    {
-      id: 3,
-      name: "Reading",
-      completed: false,
-      completedDates: [],
-      category: "Learning",
-    },
-    {
-      id: 4,
-      name: "Exercise",
-      completed: false,
-      completedDates: [],
-      category: "Fitness",
-    },
-  ]);
+  const [habits, setHabits] = useState(() => {
+    const savedHabits = localStorage.getItem("habits");
+
+    if (savedHabits) {
+      return JSON.parse(savedHabits);
+    }
+
+    return [
+      {
+        id: 1,
+        name: "Drinking Water",
+        completed: false,
+        completedDates: [],
+        category: "Health",
+      },
+      {
+        id: 2,
+        name: "Walking",
+        completed: false,
+        completedDates: [],
+        category: "Fitness",
+      },
+      {
+        id: 3,
+        name: "Reading",
+        completed: false,
+        completedDates: [],
+        category: "Learning",
+      },
+      {
+        id: 4,
+        name: "Exercise",
+        completed: false,
+        completedDates: [],
+        category: "Fitness",
+      },
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("habits", JSON.stringify(habits));
+  }, [habits]);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -49,6 +63,40 @@ const App = () => {
           : habit,
       ),
     );
+  };
+
+  const calculateStreak = (completedDates) => {
+    const today = new Date();
+
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const formatDate = (date) => {
+      return date.toISOString().split("T")[0];
+    };
+    const todayString = formatDate(today);
+    console.log(completedDates.includes(todayString));
+
+    const yesterdayString = formatDate(yesterday);
+    console.log(completedDates.includes(yesterdayString));
+
+    const completedToday = completedDates.includes(todayString);
+
+    let currentDate = today;
+
+    if (!completedToday) {
+      currentDate = yesterday;
+    }
+    console.log("completed today:", completedToday);
+    console.log("Starting date:", formatDate(currentDate));
+
+    let streak = 0;
+
+    while (completedDates.includes(formatDate(currentDate))) {
+      streak++;
+      currentDate.setDate(currentDate.getDate() - 1);
+    }
+    return streak;
   };
 
   const [newHabit, setNewHabit] = useState("");
@@ -82,38 +130,27 @@ const App = () => {
       ? 0
       : Math.round((completedHabits.length / habits.length) * 100);
 
+  const filteredHabits = habits.filter((habit) => {
+    return filterCategory === "All" || habit.category === filterCategory;
+  });
+
   return (
     <div>
       <h1>Habit Tracker</h1>
 
-      <input
-        type="text"
-        value={newHabit}
-        onChange={(e) => setNewHabit(e.target.value)}
+      <HabitForm
+        newHabit={newHabit}
+        setNewHabit={setNewHabit}
+        category={category}
+        setCategory={setCategory}
+        addHabit={addHabit}
       />
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="Health">Health</option>
-        <option value="Fitness">Fitness</option>
-        <option value="Personal">Personal</option>
-        <option value="Learning">Learning</option>
-      </select>
 
-      <button className="add" onClick={addHabit}>
-        Add Habit
-      </button>
-
-      <p>
-        {completedHabits.length} of {habits.length} habits completed.
-        {""}
-        {completedPercentage} % completed.
-      </p>
-
-      <div className="progress-bar">
-        <div
-          className="progress"
-          style={{ width: `${completedPercentage}%` }}
-        ></div>
-      </div>
+      <ProgressBar
+        completedHabits={completedHabits}
+        habits={habits}
+        completedPercentage={completedPercentage}
+      />
 
       <select
         value={filterCategory}
@@ -126,7 +163,7 @@ const App = () => {
         <option value="Learning">Learning</option>
       </select>
 
-      {habits.map((habit) => (
+      {filteredHabits.map((habit) => (
         <div className="habit-item" key={habit.id}>
           <input
             type="checkbox"
@@ -135,6 +172,8 @@ const App = () => {
           />
           <span>{habit.name}</span>
           <span>{habit.category}</span>
+          <p>🔥 {calculateStreak(habit.completedDates)} day streak</p>
+          <p>{habit.completedDates.join(", ")}</p>
 
           <button className="del" onClick={() => deleteHabit(habit.id)}>
             Delete
