@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import HabitForm from "./components/HabitForm";
 import ProgressBar from "./components/ProgressBar";
+import CategoryFilter from "./components/CategoryFilter";
+import HabitList from "./components/HabitList";
 
 const App = () => {
   const [habits, setHabits] = useState(() => {
@@ -152,34 +154,17 @@ const App = () => {
         completedPercentage={completedPercentage}
       />
 
-      <select
-        value={filterCategory}
-        onChange={(e) => setFilterCategory(e.target.value)}
-      >
-        <option value="All">All</option>
-        <option value="Health">Health</option>
-        <option value="Fitness">Fitness</option>
-        <option value="Personal">Personal</option>
-        <option value="Learning">Learning</option>
-      </select>
+      <CategoryFilter
+        filterCategory={filterCategory}
+        setFilterCategory={setFilterCategory}
+      />
 
-      {filteredHabits.map((habit) => (
-        <div className="habit-item" key={habit.id}>
-          <input
-            type="checkbox"
-            checked={habit.completed}
-            onChange={() => toggleHabit(habit.id)}
-          />
-          <span>{habit.name}</span>
-          <span>{habit.category}</span>
-          <p>🔥 {calculateStreak(habit.completedDates)} day streak</p>
-          <p>{habit.completedDates.join(", ")}</p>
-
-          <button className="del" onClick={() => deleteHabit(habit.id)}>
-            Delete
-          </button>
-        </div>
-      ))}
+      <HabitList
+        habits={filteredHabits}
+        toggleHabit={toggleHabit}
+        deleteHabit={deleteHabit}
+        calculateStreak={calculateStreak}
+      />
     </div>
   );
 };
