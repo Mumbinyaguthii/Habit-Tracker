@@ -1,8 +1,15 @@
 import { useState } from "react";
 
-const HabitItem = ({ habit, toggleHabit, deleteHabit, calculateStreak }) => {
+const HabitItem = ({
+  habit,
+  toggleHabit,
+  deleteHabit,
+  calculateStreak,
+  editHabit,
+}) => {
   const [isEditting, setIsEditting] = useState(false);
   const [editedName, setEditedName] = useState(habit.name);
+  const [editedCategory, setEditedCategory] = useState(habit.category);
 
   return (
     <div className="habit-item" key={habit.id}>
@@ -18,17 +25,37 @@ const HabitItem = ({ habit, toggleHabit, deleteHabit, calculateStreak }) => {
             Value={editedName}
             onChange={(e) => setEditedName(e.target.value)}
           />
-          <button>Save</button>
+
+          <select
+            value={editedCategory}
+            onChange={(e) => setEditedCategory(e.target.value)}
+          >
+            <option value="Health">Health</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Personal">Personal</option>
+            <option value="Learning">Learning</option>
+          </select>
+
+          <button
+            onClick={() => {
+              editHabit(habit.id, editedName, editedCategory);
+              setIsEditting(false);
+            }}
+          >
+            Save
+          </button>
         </>
       ) : (
         <span>{habit.name}</span>
       )}
-      ;<span>{habit.category}</span>
+      <span>{habit.category}</span>
+
       <p>🔥 {calculateStreak(habit.completedDates)} day streak</p>
-      <p>{habit.completedDates.join(", ")}</p>
+
       <button className="edit" onClick={() => setIsEditting(true)}>
         Edit
       </button>
+
       <button className="del" onClick={() => deleteHabit(habit.id)}>
         Delete
       </button>

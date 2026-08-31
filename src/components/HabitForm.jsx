@@ -6,7 +6,7 @@ const HabitForm = ({
   addHabit,
 }) => {
   return (
-    <>
+    <div className="habit-form">
       <input
         type="text"
         value={newHabit}
@@ -22,7 +22,7 @@ const HabitForm = ({
       <button className="add" onClick={addHabit}>
         Add Habit
       </button>
-    </>
+    </div>
   );
 };
 

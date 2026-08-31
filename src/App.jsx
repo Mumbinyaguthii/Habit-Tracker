@@ -77,11 +77,6 @@ const App = () => {
       return date.toISOString().split("T")[0];
     };
     const todayString = formatDate(today);
-    console.log(completedDates.includes(todayString));
-
-    const yesterdayString = formatDate(yesterday);
-    console.log(completedDates.includes(yesterdayString));
-
     const completedToday = completedDates.includes(todayString);
 
     let currentDate = today;
@@ -89,8 +84,6 @@ const App = () => {
     if (!completedToday) {
       currentDate = yesterday;
     }
-    console.log("completed today:", completedToday);
-    console.log("Starting date:", formatDate(currentDate));
 
     let streak = 0;
 
@@ -125,6 +118,16 @@ const App = () => {
     setHabits(habits.filter((habit) => habit.id !== id));
   };
 
+  const editHabit = (id, newName, newCategory) => {
+    setHabits(
+      habits.map((habit) =>
+        habit.id === id
+          ? { ...habit, name: newName, category: newCategory }
+          : habit,
+      ),
+    );
+  };
+
   const completedHabits = habits.filter((habit) => habit.completed);
 
   const completedPercentage =
@@ -137,7 +140,7 @@ const App = () => {
   });
 
   return (
-    <div>
+    <div className="app">
       <h1>Habit Tracker</h1>
 
       <HabitForm
@@ -164,6 +167,7 @@ const App = () => {
         toggleHabit={toggleHabit}
         deleteHabit={deleteHabit}
         calculateStreak={calculateStreak}
+        editHabit={editHabit}
       />
     </div>
   );

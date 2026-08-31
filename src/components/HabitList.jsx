@@ -1,6 +1,12 @@
 import HabitItem from "./HabitItem";
 
-const HabitList = ({ habits, toggleHabit, deleteHabit, calculateStreak }) => {
+const HabitList = ({
+  habits,
+  toggleHabit,
+  deleteHabit,
+  calculateStreak,
+  editHabit,
+}) => {
   return (
     <div>
       {habits.map((habit) => (
@@ -10,6 +16,7 @@ const HabitList = ({ habits, toggleHabit, deleteHabit, calculateStreak }) => {
           toggleHabit={toggleHabit}
           deleteHabit={deleteHabit}
           calculateStreak={calculateStreak}
+          editHabit={editHabit}
         />
       ))}
     </div>
