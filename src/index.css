@@ -5,8 +5,8 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #f4f6f8;
-  color: #222;
+  background: #eef5f0;
+  color: #1f2937;
 }
 
 #root {
@@ -30,8 +30,8 @@ select {
   margin: 40px auto;
   padding: 30px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 .habit-form {
@@ -64,6 +64,73 @@ select {
   opacity: 0.85;
 }
 
+.progress-container {
+  margin-top: 30px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #f5f7f4;
+}
+
+.progress h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.progress-header p {
+  margin-top: 16px;
+  color: #6b746d;
+}
+
+.progress-stats {
+  display: grid;
+  grid-template-columns: repeat(3 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  text-align: center;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.stat-card p {
+  margin: 6px 0 0;
+  color: #6b746d;
+}
+
+.weekly-progress {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.weekly-progress h3 {
+  margin: 0;
+}
+
+.week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.week-days span {
+  padding: 10px 5px;
+  border-radius: 8px;
+  background-color: #e8eee8;
+  text-align: center;
+  font-size: 14px;
+}
+
 .progress-section {
   margin-bottom: 25px;
 }
@@ -83,8 +150,8 @@ select {
 
 .progress {
   height: 100%;
-  border-radius: 10px;
-  background: #4caf50;
+  border-radius: 16px;
+  background: #2f7d4a;
   transition: width 0.3s ease;
 }
 
@@ -100,57 +167,74 @@ select {
 .habit-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 15px;
+  gap: 14px;
+  padding: 16px 18px;
   margin-bottom: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #fafafa;
+  border: 1px solid #dfe7e2;
+  border-radius: 12px;
+  background: #ffffff;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.habit-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
 }
 
 .habit-item input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   cursor: pointer;
+  accent-color: #2f7d4a;
 }
 
 .habit-item span:first-of-type {
   flex: 1;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .habit-item span:nth-of-type(2) {
   font-size: 13px;
-  padding: 4px 8px;
-  border-radius: 12px;
-  background: #e5e7eb;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #e8f3eb;
+  color: #2f7d4a;
+  font-weight: 500;
 }
 
 .streak {
   margin: 0;
   font-size: 14px;
   white-space: nowrap;
+  color: #555;
 }
 
 .edit,
 .del {
   border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 8px 13px;
+  border-radius: 7px;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .edit {
-  background: #e5e7eb;
+  background: #eef1f3;
+  color: #333;
 }
 
 .del {
-  background: #f1caca;
+  background: #f8dada;
+  color: #9b2c2c;
 }
 
 .edit:hover,
 .del:hover {
-  opacity: 0.8;
+  transform: translateY(-1px);
+  opacity: 0.9;
 }
 
 @media (max-width: 600px) {

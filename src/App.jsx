@@ -3,6 +3,7 @@ import HabitForm from "./components/HabitForm";
 import ProgressBar from "./components/ProgressBar";
 import CategoryFilter from "./components/CategoryFilter";
 import HabitList from "./components/HabitList";
+import Progress from "./components/Progress";
 
 const App = () => {
   const [habits, setHabits] = useState(() => {
@@ -150,6 +151,8 @@ const App = () => {
         setCategory={setCategory}
         addHabit={addHabit}
       />
+
+      <Progress habits={habits} />
 
       <ProgressBar
         completedHabits={completedHabits}
