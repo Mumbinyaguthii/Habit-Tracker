@@ -1,6 +1,7 @@
 const CategoryFilter = ({ filterCategory, setFilterCategory }) => {
   return (
     <select
+      className="category-filter"
       value={filterCategory}
       onChange={(e) => setFilterCategory(e.target.value)}
     >

@@ -50,7 +50,9 @@ const HabitItem = ({
       )}
       <span>{habit.category}</span>
 
-      <p>🔥 {calculateStreak(habit.completedDates)} day streak</p>
+      <p className="streak">
+        🔥 {calculateStreak(habit.completedDates)} day streak
+      </p>
 
       <button className="edit" onClick={() => setIsEditting(true)}>
         Edit

@@ -63,3 +63,111 @@ select {
 .add:hover {
   opacity: 0.85;
 }
+
+.progress-section {
+  margin-bottom: 25px;
+}
+
+.progress-section p {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 10px;
+  background: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.category-filter {
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+.habit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.habit-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.habit-item span:first-of-type {
+  flex: 1;
+  font-weight: 500;
+}
+
+.habit-item span:nth-of-type(2) {
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #e5e7eb;
+}
+
+.streak {
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.edit,
+.del {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit {
+  background: #e5e7eb;
+}
+
+.del {
+  background: #f1caca;
+}
+
+.edit:hover,
+.del:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .app {
+    margin: 15px;
+    padding: 20px;
+  }
+
+  .habit-form {
+    flex-direction: column;
+  }
+
+  .habit-item {
+    flex-wrap: wrap;
+  }
+
+  .streak {
+    width: 100%;
+  }
+}

@@ -1,6 +1,6 @@
 const ProgressBar = ({ completedHabits, habits, completedPercentage }) => {
   return (
-    <>
+    <div className="progress-section">
       <p>
         {completedHabits.length} of {habits.length} habits completed.
         {""}
@@ -13,7 +13,7 @@ const ProgressBar = ({ completedHabits, habits, completedPercentage }) => {
           style={{ width: `${completedPercentage}%` }}
         ></div>
       </div>
-    </>
+    </div>
   );
 };
 
