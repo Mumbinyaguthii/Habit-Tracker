@@ -3,8 +3,7 @@ const ProgressBar = ({ completedHabits, habits, completedPercentage }) => {
     <div className="progress-section">
       <p>
         {completedHabits.length} of {habits.length} habits completed.
-        {""}
-        {completedPercentage} % completed.
+        <span className="percentage">{completedPercentage} %</span>.
       </p>
 
       <div className="progress-bar">

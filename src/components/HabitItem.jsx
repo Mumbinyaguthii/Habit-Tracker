@@ -12,21 +12,26 @@ const HabitItem = ({
   const [editedCategory, setEditedCategory] = useState(habit.category);
 
   return (
-    <div className="habit-item" key={habit.id}>
+    <div
+      className={`habit-item ${habit.completed ? "completed" : ""}`}
+      key={habit.id}
+    >
       <input
         type="checkbox"
         checked={habit.completed}
         onChange={() => toggleHabit(habit.id)}
       />
       {isEditting ? (
-        <>
+        <div className="edit-mode">
           <input
+            className="edit-input"
             type="text"
-            Value={editedName}
+            value={editedName}
             onChange={(e) => setEditedName(e.target.value)}
           />
 
           <select
+            className="edit-select"
             value={editedCategory}
             onChange={(e) => setEditedCategory(e.target.value)}
           >
@@ -37,6 +42,7 @@ const HabitItem = ({
           </select>
 
           <button
+            className="save"
             onClick={() => {
               editHabit(habit.id, editedName, editedCategory);
               setIsEditting(false);
@@ -44,7 +50,7 @@ const HabitItem = ({
           >
             Save
           </button>
-        </>
+        </div>
       ) : (
         <span>{habit.name}</span>
       )}
