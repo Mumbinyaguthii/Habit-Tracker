@@ -52,21 +52,24 @@ const HabitItem = ({
           </button>
         </div>
       ) : (
-        <span>{habit.name}</span>
+        <>
+          <span>{habit.name}</span>
+
+          <span>{habit.category}</span>
+
+          <p className="streak">
+            🔥 {calculateStreak(habit.completedDates)} day streak
+          </p>
+
+          <button className="edit" onClick={() => setIsEditting(true)}>
+            Edit
+          </button>
+
+          <button className="del" onClick={() => deleteHabit(habit.id)}>
+            Delete
+          </button>
+        </>
       )}
-      <span>{habit.category}</span>
-
-      <p className="streak">
-        🔥 {calculateStreak(habit.completedDates)} day streak
-      </p>
-
-      <button className="edit" onClick={() => setIsEditting(true)}>
-        Edit
-      </button>
-
-      <button className="del" onClick={() => deleteHabit(habit.id)}>
-        Delete
-      </button>
     </div>
   );
 };

@@ -152,7 +152,7 @@ const App = () => {
         addHabit={addHabit}
       />
 
-      <Progress habits={habits} />
+      <Progress habits={habits} calculateStreak={calculateStreak} />
 
       <ProgressBar
         completedHabits={completedHabits}

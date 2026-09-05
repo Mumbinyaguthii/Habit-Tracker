@@ -9,16 +9,20 @@ const HabitList = ({
 }) => {
   return (
     <div>
-      {habits.map((habit) => (
-        <HabitItem
-          key={habit.id}
-          habit={habit}
-          toggleHabit={toggleHabit}
-          deleteHabit={deleteHabit}
-          calculateStreak={calculateStreak}
-          editHabit={editHabit}
-        />
-      ))}
+      {habits.length === 0 ? (
+        <p className="empty-space">No habits found.</p>
+      ) : (
+        habits.map((habit) => (
+          <HabitItem
+            key={habit.id}
+            habit={habit}
+            toggleHabit={toggleHabit}
+            deleteHabit={deleteHabit}
+            calculateStreak={calculateStreak}
+            editHabit={editHabit}
+          />
+        ))
+      )}
     </div>
   );
 };

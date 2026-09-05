@@ -18,6 +18,7 @@ h1 {
   margin-top: 0;
   margin-bottom: 30px;
   font-size: 32px;
+  color: #245c38;
 }
 button,
 input,
@@ -52,16 +53,19 @@ select {
 }
 
 .add {
-  padding: 10px 16px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 6px;
+  border-radius: 7px;
   cursor: pointer;
-  background: #222;
+  background: #2f7d4a;
   color: white;
+  font-weight: 600;
+  transition: 0.2s ease;
 }
 
 .add:hover {
-  opacity: 0.85;
+  background: #25663b;
+  transform: translateY(-1px);
 }
 
 .progress-container {
@@ -112,32 +116,6 @@ select {
   color: #6b746d;
 }
 
-.weekly-progress {
-  margin-top: 24px;
-  padding: 20px;
-  border-radius: 12px;
-  background-color: white;
-}
-
-.weekly-progress h3 {
-  margin: 0;
-}
-
-.week-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.week-days span {
-  padding: 10px 5px;
-  border-radius: 8px;
-  background-color: #e8eee8;
-  text-align: center;
-  font-size: 14px;
-}
-
 .progress-section {
   margin-bottom: 25px;
   padding: 18px;
@@ -168,13 +146,54 @@ select {
   transition: width 0.4s ease;
 }
 
+.week-days {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.day > span {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.day-circle {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #dfe7e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #2f7d4a;
+  background: white;
+}
+
+.completed-day .day-circle {
+  background: #2f7d4a;
+  border-color: #2f7d4a;
+  color: white;
+}
+
 .category-filter {
   padding: 10px 12px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #d1ddd5;
+  border-radius: 7px;
   background: white;
   cursor: pointer;
+  color: #374151;
 }
 
 .habit-item {
@@ -189,6 +208,15 @@ select {
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: #6b7280;
+  background: #f8faf9;
+  border-radius: 10px;
+  border: 1px dashed #d1ddd5;
 }
 
 .habit-item:hover {
@@ -272,7 +300,8 @@ select {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
 }
 
 .edit-input {
@@ -286,6 +315,7 @@ select {
 }
 
 .edit-select {
+  width: 120px;
   padding: 10px 12px;
   font-size: 15px;
   border: 1px solid #cbd5cf;
@@ -299,10 +329,9 @@ select {
 }
 
 .save {
-  padding: 8px 14px;
+  padding: 10px 15px;
   border: none;
   border-radius: 7px;
-  cursor: pointer;
   background: #2f7d4a;
   color: white;
   cursor: pointer;
@@ -340,5 +369,13 @@ select {
   .edit-select,
   .save {
     width: 100%;
+  }
+
+  .progress-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .week-days {
+    gap: 5px;
   }
 }
