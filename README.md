@@ -4,7 +4,7 @@ A responsive habit tracking web application built with React. The app allows use
 
 ## Live Demo
 
-[habit-tracker-jthrtnj4j-nova-1641.vercel.app]
+[habit-tracker-1z6xdl2cx-nova-1641.vercel.app]
 
 ## GitHub Repository
 
