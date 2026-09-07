@@ -19,6 +19,7 @@ h1 {
   margin-bottom: 30px;
   font-size: 32px;
   color: #245c38;
+  letter-spacing: -0.5px;
 }
 button,
 input,
@@ -75,7 +76,7 @@ select {
   background-color: #f5f7f4;
 }
 
-.progress h2 {
+.progress-container h2 {
   margin: 0;
   font-size: 24px;
 }
@@ -161,7 +162,7 @@ select {
   flex: 1;
 }
 
-.day > span {
+.day span {
   font-size: 13px;
   color: #6b7280;
   font-weight: 500;
