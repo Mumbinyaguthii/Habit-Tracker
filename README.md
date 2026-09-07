@@ -4,11 +4,11 @@ A responsive habit tracking web application built with React. The app allows use
 
 ## Live Demo
 
-[View the live application]
+[habit-tracker-jthrtnj4j-nova-1641.vercel.app]
 
 ## GitHub Repository
 
-[View the source code]
+[https://github.com/Mumbinyaguthii/Habit-Tracker.git]
 
 ## Features
 
@@ -37,17 +37,16 @@ A responsive habit tracking web application built with React. The app allows use
 - Browser localStorage
 - Git & GitHub
 
-
 ## Project Structure
 
 src/
 ├── components/
-│   ├── HabitForm.jsx
-│   ├── ProgressBar.jsx
-│   ├── CategoryFilter.jsx
-│   ├── HabitList.jsx
-│   ├── HabitItem.jsx
-│   └── Progress.jsx
+│ ├── HabitForm.jsx
+│ ├── ProgressBar.jsx
+│ ├── CategoryFilter.jsx
+│ ├── HabitList.jsx
+│ ├── HabitItem.jsx
+│ └── Progress.jsx
 │
 ├── App.jsx
 ├── index.css
