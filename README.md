@@ -1,16 +1,54 @@
-# React + Vite
+# Habit Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive habit tracking web application built with React. The app allows users to create, organize, track, edit, and delete daily habits while monitoring their progress throughout the week.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[View the live application]
 
-## React Compiler
+## GitHub Repository
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[View the source code]
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Add new habits
+- Assign habits to categories
+- Mark habits as completed
+- Unmark completed habits
+- Edit habit names and categories
+- Delete habits
+- Filter habits by category
+- Track daily completion
+- Calculate habit streaks
+- View weekly progress
+- View total habits and completed habits
+- Track completed dates
+- Persist habit data using browser localStorage
+- Responsive design for smaller screens
+
+## Technologies Used
+
+- React
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Vite
+- Browser localStorage
+- Git & GitHub
+
+
+## Project Structure
+
+src/
+├── components/
+│   ├── HabitForm.jsx
+│   ├── ProgressBar.jsx
+│   ├── CategoryFilter.jsx
+│   ├── HabitList.jsx
+│   ├── HabitItem.jsx
+│   └── Progress.jsx
+│
+├── App.jsx
+├── index.css
+└── main.jsx
